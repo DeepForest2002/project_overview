@@ -1,6 +1,6 @@
 // first load all the env variables
 import dotenv from "dotenv";
-dotenv.config({ override: true });
+dotenv.config();
 
 function checkRequiredEnv(key: string): string {
   const value = process.env[key]?.trim();
@@ -20,4 +20,7 @@ export const env = {
   jwt_token_expires: process.env.JWT_ACCESS_EXPIRES_IN,
   rate_limit_window_seconds: Number(process.env.RATE_LIMIT_WINDOW_SECONDS),
   max_request: Number(process.env.RATE_LIMIT_MAX_REQUEST),
+  cloudinary_name: process.env.CLOUDINARY_NAME,
+  cloudinary_api_key: process.env.CLOUDINARY_API_KEY,
+  cloudinary_api_secret: process.env.CLOUDINARY_API_SECRET,
 } as const; //this is an object
