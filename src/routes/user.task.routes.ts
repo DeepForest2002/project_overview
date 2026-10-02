@@ -5,8 +5,6 @@ import {
   getAllUserTasks,
   getTask,
 } from "../services/user.task.service.js";
-import { success } from "zod";
-import { UUID } from "node:crypto";
 import { RateLimiter } from "../middleware/ratelimit.middleware.js";
 export const userTaskRouter = Router();
 
@@ -14,6 +12,8 @@ userTaskRouter.use(authentication);
 userTaskRouter.use(RateLimiter);
 
 //all the routes below this are protected
+
+console.log("Inside user");
 
 userTaskRouter.post("/", async (req, res, next) => {
   try {
@@ -56,3 +56,5 @@ userTaskRouter.get("/:taskId", async (req, res, next) => {
     next(error);
   }
 });
+
+//update a particular task
