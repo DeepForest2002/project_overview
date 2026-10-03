@@ -16,4 +16,4 @@ export const uploadBannerImage = multer({
   },
 });
 
-export const uploadSingleBannerImage = uploadBannerImage.single("image");
+export const uploadSingleBannerImage = uploadBannerImage.single("image"); //this is the middleware
