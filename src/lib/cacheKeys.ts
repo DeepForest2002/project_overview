@@ -5,3 +5,7 @@ export function createUserCacheKey(user_id: string): string {
 export function createRaterLimiterKey(ip: unknown): string {
   return `user:${ip}:rate-limit`;
 }
+
+export function createAdminBannerKey(user_id: string): string {
+  return `admin:${user_id}:banner:key`;
+}
