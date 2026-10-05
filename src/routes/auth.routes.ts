@@ -1,8 +1,10 @@
 import { Router } from "express";
 import { LoginUser, registerUser } from "../services/auth.service.js";
-import { success } from "zod";
 import { authentication } from "../middleware/auth.middleware.js";
 export const authRoutes = Router();
+
+console.log("Inside auth");
+
 authRoutes.post("/register", async (req, res, next) => {
   try {
     const { email, password } = req.body;

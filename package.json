@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsx watch src/server.ts",
     "build": "tsc",
-    "start": "node dist/server.js"
+    "start": "node dist/server.js",
+    "worker": "node dist/src/workers/worker.js"
   },
   "keywords": [],
   "author": "",
@@ -16,7 +17,9 @@
   "devDependencies": {
     "@types/bcrypt": "^6.0.0",
     "@types/cors": "^2.8.19",
+    "@types/ioredis": "^4.28.10",
     "@types/jsonwebtoken": "^9.0.10",
+    "@types/multer": "^2.3.0",
     "@types/node": "^26.6.1",
     "@types/pg": "^8.23.1",
     "cors": "^2.8.6",
@@ -27,10 +30,14 @@
   "dependencies": {
     "@types/express": "^5.0.6",
     "bcrypt": "^6.0.0",
+    "bullmq": "^6.3.10",
+    "cloudinary": "^2.11.0",
     "dbmate": "^2.35.1",
     "dotenv": "^18.0.0",
     "express": "^5.2.1",
+    "ioredis": "^6.0.0",
     "jsonwebtoken": "^9.0.3",
+    "multer": "^2.4.0",
     "pg": "^8.23.0",
     "pino": "^10.3.1",
     "redis": "^6.2.1",

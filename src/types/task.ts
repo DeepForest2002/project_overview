@@ -6,3 +6,5 @@ export type task = {
   created_at: Date;
   updated_at: Date;
 };
+
+export type TaskStatus = "pending" | "in_progress" | "resolved";

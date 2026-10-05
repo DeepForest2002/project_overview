@@ -1,10 +1,11 @@
-import { Router } from "express";
+import { Router, Request, Response, NextFunction } from "express";
 import { authentication } from "../middleware/auth.middleware.js";
 import { AdminMiddleware } from "../middleware/admin.middleware.js";
 import { uploadSingleBannerImage } from "../middleware/banner.middleware.js";
 import {
   createAdminBannerService,
   getAdminBannerService,
+  deleteAdminBannerService,
 } from "../services/admin.banner.service.js";
 
 export const adminBannerRouter = Router();
@@ -37,3 +38,20 @@ adminBannerRouter.get("/", async (req, res, next) => {
     next(error);
   }
 });
+
+adminBannerRouter.delete(
+  "/:bannerId",
+  async (
+    req: Request<{ bannerId: string }>,
+    res: Response,
+    next: NextFunction,
+  ) => {
+    try {
+      const bannerId = req.params.bannerId;
+      await deleteAdminBannerService(bannerId, req.user.id);
+      // ...
+    } catch (error) {
+      next(error);
+    }
+  },
+);

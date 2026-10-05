@@ -1,37 +1,21 @@
 import { AppError } from "../error/AppError.js";
 import { task } from "../types/task.js";
+import { getAdminTasksRepo } from "../repositories/admin.task.repository.js";
+export const taskStatuses = ["pending", "in_progress", "resolved"] as const;
 
-//Search by query parameters
-type AdminTaskListQuery = {
-  search?: string;
-  status?: string;
-};
+export type TaskStatus = (typeof taskStatuses)[number];
 
-type AdminTaskListResponse = {
-  tasks: task[];
-};
-
-type taskStatus = "pending" | "in_progress" | "resolved";
-function isTaskValid(status: string): status is taskStatus {
-  return (
-    status === "pending" || status === "in_progress" || status === "resolved"
-  );
+export function isTaskStatus(status: any): status is TaskStatus {
+  return taskStatuses.includes(status);
 }
 
-export async function GetAdminTaskService(
-  query: AdminTaskListQuery,
-): Promise<AdminTaskListResponse> {
-  const search = query.search?.trim() || undefined;
-  const status = query.status?.trim() || undefined;
-
-  if (status && !isTaskValid(status)) {
-    throw new AppError(
-      400,
-      "status should be in pending, in_progress, and resolved",
-    );
+export async function getAllTaskServiceAdmin(
+  status: any,
+): Promise<task[] | null> {
+  if (status && (typeof status !== "string" || isTaskStatus(status))) {
+    throw new AppError(400, "Invalid task status");
   }
 
-  const task = await GetAdminTaskRepo(search, status);
-
-  return task;
+  const allTasks = await getAdminTasksRepo(status);
+  return allTasks;
 }

@@ -13,4 +13,4 @@ apiRouter.use("/auth", authRoutes);
 apiRouter.use("/tasks", userTaskRouter);
 apiRouter.use("/admin/tasks", adminTaskRouter);
 apiRouter.use("/admin/banners", adminBannerRouter);
-// apiRouter.use("/admin/banners", adminBannerRouter);
+apiRouter.use("/admin/banners", adminBannerRouter);

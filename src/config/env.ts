@@ -24,4 +24,5 @@ export const env = {
   cloudinary_api_key: process.env.CLOUDINARY_API_KEY,
   cloudinary_api_secret: process.env.CLOUDINARY_API_SECRET,
   cloudinary_queue_name: process.env.CLOUDINARY_QUEUE_NAME,
+  redis_url: process.env.REDIS_URL,
 } as const; //this is an object
