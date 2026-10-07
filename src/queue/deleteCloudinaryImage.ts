@@ -10,11 +10,9 @@ export const cloudinaryQueue = new Queue("cloudinaryDeletQueue", {
 });
 
 export async function addingJobs(public_id: string): Promise<void> {
-  const jobData: DeleteCloudinaryImageJobData = { public_id };
-
   await cloudinaryQueue.add(
     "delete-image",
-    { jobData },
+    { public_id },
     {
       attempts: 3,
       backoff: {
