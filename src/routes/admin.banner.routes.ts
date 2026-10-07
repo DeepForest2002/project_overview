@@ -7,6 +7,7 @@ import {
   getAdminBannerService,
   deleteAdminBannerService,
 } from "../services/admin.banner.service.js";
+import { success } from "zod";
 
 export const adminBannerRouter = Router();
 console.log("Inside banner");
@@ -30,7 +31,7 @@ adminBannerRouter.get("/", async (req, res, next) => {
   try {
     const banners = await getAdminBannerService(req.user.id);
     res.status(200).json({
-      success: false,
+      success: true,
       banners: banners,
     });
   } catch (error) {
@@ -50,6 +51,10 @@ adminBannerRouter.delete(
       const bannerId = req.params.bannerId;
       await deleteAdminBannerService(bannerId, req.user.id);
       // ...
+      res.status(200).json({
+        success: true,
+        msg: "Document deleted successfully",
+      });
     } catch (error) {
       next(error);
     }
