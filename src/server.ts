@@ -1,6 +1,4 @@
 //main root file
-
-import { createConnection } from "node:net";
 import { createApp } from "./app.js";
 import { env } from "./config/env.js";
 import { logger } from "./lib/logger.js";
@@ -19,7 +17,7 @@ async function startServer() {
   }
 }
 
-process.on("SIGTTIN", async () => {
+process.on("SIGINT", async () => {
   await CloseRedisConnection();
   process.exit(0);
 });
