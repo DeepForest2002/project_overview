@@ -9,6 +9,7 @@ import {
 import { redisClient } from "../redis/redis.js";
 import { createAdminBannerKey } from "../lib/cacheKeys.js";
 import { invalidBannerCache } from "./cache.service.js";
+import { addingJobs } from "../queue/deleteCloudinaryImage.js";
 
 export async function createAdminBannerService(
   file: Express.Multer.File | undefined,
@@ -34,7 +35,8 @@ export async function createAdminBannerService(
 
   //store this into db
   const banner = await createAdminBannerRepo(secure_url, public_id, user_id);
-  await invalidBannerCache(user_id);
+  const cacheKey = createAdminBannerKey(user_id);
+  await invalidBannerCache(cacheKey);
   return banner;
 }
 
@@ -55,16 +57,16 @@ export async function getAdminBannerService(
 
 export async function deleteAdminBannerService(
   bannerId: string,
-  user_id:string
+  user_id: string,
 ): Promise<void> {
   const cloudinary_unique_id = await deleteAdminBannerRepo(bannerId);
   if (!cloudinary_unique_id) {
-    throw new AppError(404, "Banner not found")
+    throw new AppError(404, "Banner not found");
   }
-  console.log("Banner deleted from db")
+  console.log("Banner deleted from db");
   //clear the cache
-  await invalidBannerCache(user_id);
-
+  const cacheKey = createAdminBannerKey(user_id);
+  await invalidBannerCache(cacheKey);
+  await addingJobs(cloudinary_unique_id);
   //add a bullmq job
-  
 }
