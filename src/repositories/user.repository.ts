@@ -1,6 +1,5 @@
-import { AppError } from "../error/AppError.js";
 import { pool } from "../lib/db.js";
-import { DBUserWithPasswordRow, User, UserDbRow } from "../types/user.js";
+import { User } from "../types/user.js";
 
 export async function findUserByEmail(email: string): Promise<User | null> {
   const result = await pool.query(

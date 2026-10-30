@@ -1,7 +1,7 @@
-import { env } from "../config/env.js";
+// import { env } from "../config/env.js";
 import { AppError } from "../error/AppError.js";
-import { User, UserTokenPayload } from "../types/user.js";
-import jwt, { SignOptions } from "jsonwebtoken";
+import { UserTokenPayload } from "../types/user.js";
+import jwt from "jsonwebtoken";
 
 export function generateToken(payload: UserTokenPayload) {
   return jwt.sign(payload, process.env.JWT_SECRET!, {

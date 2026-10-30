@@ -1,4 +1,4 @@
-import express, { Router } from "express";
+import { Router } from "express";
 import { authentication } from "../middleware/auth.middleware.js";
 import {
   CreateUserTask,

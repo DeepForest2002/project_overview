@@ -5,7 +5,6 @@ import {
   findUserByEmail,
   findEmailWithPassword,
 } from "../repositories/user.repository.js";
-import { User, userSchema } from "../types/user.js";
 import bcrypt from "bcrypt";
 export async function registerUser(
   email: string,

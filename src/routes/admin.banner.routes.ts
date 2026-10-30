@@ -7,7 +7,6 @@ import {
   getAdminBannerService,
   deleteAdminBannerService,
 } from "../services/admin.banner.service.js";
-import { success } from "zod";
 
 export const adminBannerRouter = Router();
 console.log("Inside banner");

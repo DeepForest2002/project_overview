@@ -15,5 +15,7 @@ adminTaskRouter.get("/", async (req, res, next) => {
       success: true,
       tasks: tasks,
     });
-  } catch (err) {}
+  } catch (err) {
+    next(err);
+  }
 });

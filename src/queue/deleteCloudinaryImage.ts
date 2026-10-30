@@ -1,9 +1,9 @@
 import { Queue } from "bullmq";
 import { bullmqConnection } from "../lib/bullmq.js";
 
-type DeleteCloudinaryImageJobData = {
-  public_id: string;
-};
+// type DeleteCloudinaryImageJobData = {
+//   public_id: string;
+// };
 
 export const cloudinaryQueue = new Queue("cloudinaryDeletQueue", {
   connection: bullmqConnection,

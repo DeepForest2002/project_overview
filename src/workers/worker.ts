@@ -1,7 +1,7 @@
 import { Worker } from "bullmq";
 import { deleteBannerFromCloudinary } from "../lib/cloudinary.js";
 import { bullmqConnection } from "../lib/bullmq.js";
-import { error } from "node:console";
+// import { error } from "node:console";
 import { logger } from "../lib/logger.js";
 
 export const worker = new Worker(
