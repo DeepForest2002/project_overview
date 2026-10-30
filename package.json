@@ -8,13 +8,19 @@
     "dev": "tsx watch src/server.ts",
     "build": "tsc",
     "start": "node dist/server.js",
-    "worker": "node dist/src/workers/worker.js"
+    "worker": "tsx src/workers/worker.ts",
+    "docker:compose": "docker compose up -d",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@types/bcrypt": "^6.0.0",
     "@types/cors": "^2.8.19",
     "@types/ioredis": "^4.28.10",
@@ -23,9 +29,14 @@
     "@types/node": "^26.6.1",
     "@types/pg": "^8.23.1",
     "cors": "^2.8.6",
+    "eslint": "^10.14.0",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^17.13.0",
     "pino-pretty": "^13.1.3",
+    "prettier": "^3.9.10",
     "tsx": "^4.23.13",
-    "typescript": "^7.0.2"
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.72.1"
   },
   "dependencies": {
     "@types/express": "^5.0.6",
