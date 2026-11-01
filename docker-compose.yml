@@ -23,7 +23,8 @@ services:
     ports:
       - "4000:4000"
     env_file:
-      - .env
+      - path: .env
+        required: false
     environment:
       REDIS_URL: redis://redis:6379
       PORT: 4000
