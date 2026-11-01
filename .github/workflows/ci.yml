@@ -1,0 +1,41 @@
+name: Node.js ci pipeline
+
+#When should the workflow execute
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+  #Define the steps
+  steps:
+    #1 Download the repo code
+    - name: Download repo code
+      uses: actions/checkout@v4
+
+    #2 Install node js
+    - name: Setup node js
+      uses: actions/setup-node@v4
+      with: node-version:22
+
+    #3 Install all the dependencies
+    - name: Install dependencies
+      run: npm ci
+
+    #4 Build the code
+    - name: Build the code
+      run: npm run build
+
+    #5 Run tests
+    - name: Run test cases
+      run: npm run test --if-present
+
+    #6 Build docker image
+    - name: Build docker image
+      run: docker compose up --build -d
