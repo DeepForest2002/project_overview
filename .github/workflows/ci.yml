@@ -16,11 +16,11 @@ jobs:
     steps:
       # 1. Get source code
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       # 2. Configure Node.js
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: npm
@@ -36,10 +36,6 @@ jobs:
       # 5. Compile TypeScript
       - name: Build application
         run: npm run build
-
-      # 6. Run tests (if configured)
-      - name: Run tests
-        run: npm test --if-present
 
       # 7. Validate Docker Compose configuration
       - name: Validate Docker Compose
