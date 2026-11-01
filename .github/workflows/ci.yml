@@ -1,6 +1,5 @@
 name: Node.js CI Pipeline
 
-# When should the workflow execute?
 on:
   push:
     branches:
@@ -10,32 +9,46 @@ on:
       - main
 
 jobs:
-  build:
+  build-and-test:
+    name: Lint, Format, Build and Docker
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Download repository code
-      - name: Checkout code
+      # 1. Get source code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2. Install Node.js
+      # 2. Configure Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: npm
 
       # 3. Install dependencies
       - name: Install dependencies
         run: npm ci
 
-      # 4. Build TypeScript
+      # 4. Check Prettier formatting
+      - name: Check formatting
+        run: npm run format:check
+
+      # 5. Run ESLint
+      - name: Run ESLint
+        run: npm run lint
+
+      # 6. Compile TypeScript
       - name: Build application
         run: npm run build
 
-      # 5. Run tests
+      # 7. Run tests (if configured)
       - name: Run tests
         run: npm test --if-present
 
-      # 6. Build Docker image
+      # 8. Validate Docker Compose configuration
+      - name: Validate Docker Compose
+        run: docker compose config -q
+
+      # 9. Build Docker image
       - name: Build Docker image
-        run: docker build -t my-node-a
+        run: docker compose up --build -d
