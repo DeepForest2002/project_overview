@@ -4,6 +4,6 @@ export const healthRouter = Router();
 healthRouter.get("", (_req, res) => {
   res.status(200).json({
     success: true,
-    msg: "health route is doing good",
+    msg: "health route is doing good for dev branch",
   });
 });
