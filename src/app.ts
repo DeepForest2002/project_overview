@@ -10,6 +10,10 @@ export function createApp() {
   app.use(express.json());
   app.use(express.urlencoded({ extended: true })); //used to parse url encoded form data
   app.use("/api/v1", apiRouter);
+  app.get("/", (req, res) => {
+    console.log(req);
+    res.json({ msg: "Everything is working fine" });
+  });
   app.use(notFound);
   app.use(errorHandler);
   console.log("At the end of the app");

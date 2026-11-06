@@ -8,7 +8,7 @@ async function startServer() {
   try {
     await createRedisConnection();
     const app = createApp();
-    app.listen(env.port, () => {
+    app.listen(env.port, "0.0.0.0", () => {
       logger.info(`Server is now running on port http://localhost:${env.port}`);
     });
   } catch (error) {
