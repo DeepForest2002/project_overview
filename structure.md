@@ -49,3 +49,7 @@ nano .env and copy the env file
 then docker compose up -d --build
 
 copy i/p
+
+// if i change anything in the code then
+first push the code in github
+then run git pull origin master on ec2 on root repo
