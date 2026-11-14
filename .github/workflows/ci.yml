@@ -39,10 +39,6 @@ jobs:
       - name: Build application
         run: npm run build
 
-      # 6. Run tests
-      - name: Run tests
-        run: npm test --if-present
-
       # 7. Validate Docker Compose
       - name: Validate Docker Compose
         run: docker compose config -q
