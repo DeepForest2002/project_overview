@@ -13,3 +13,11 @@ Docker Volumes = used to persist data , security , backup and restoration
 8. docker rm -f demo-mongo
 9. create a new container docker run -d --name demo-mongo2 -v volume_name:/data/db -p 27017:27017 mongo
 10. db.demos.find.().pretty()
+
+
+# Commands for docker network
+1. docker network ls
+2. docker network network-name
+3. docker network inspect network-name
+4. to delete the network = docker network rm id
+5. 
