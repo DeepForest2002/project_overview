@@ -60,3 +60,5 @@ then run git pull origin master on ec2 on root repo
 install minkube and then run minikube start --driver=docker
 
 load images into minikube = minikube image load image_name
+
+
